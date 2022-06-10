@@ -1,3 +1,11 @@
+When using `vars:`, I can't get the value of the vars for `commonLabels` nor `nameSuffix`.
+
+Run:
+
+```shell
+kustomize build overlays/dev/
+```
+
 Actual output:
 
 ```yaml
