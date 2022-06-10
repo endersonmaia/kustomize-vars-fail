@@ -1,0 +1,28 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+commonLabels:
+  non-var-label: non-var
+
+images:
+  - name: busybox
+    newName: busybox
+    newTag: latest
+
+configMapGenerator:
+  - name: my-config
+    literals:
+      - MY_VAR=my-value
+
+vars:
+  - name: MY_VAR
+    objref:
+      apiVersion: v1
+      kind: ConfigMap
+      name: my-config
+    fieldref:
+      fieldpath: data.MY_VAR
+
+resources:
+  - pod.yaml
